@@ -1,0 +1,121 @@
+
+body{
+    background-color: rgb(119, 138, 138);
+}
+    h1{
+        margin:0;
+        display: inline-block;
+        padding-bottom: 5%;
+   }
+   h2{
+       font-family: 'Courier New', Courier, monospace;
+     
+   } 
+   p{
+    margin:10px;
+    font-size: 18px;
+}
+
+
+   .btn{
+       margin-left: 20px;
+       
+   }
+
+   button {
+    margin-left: 20px;
+    appearance: none;
+    outline: 0;
+    background-color: white;
+    border: 0;
+    padding: 10px 15px;
+    color: #50a3a2;
+    border-radius: 3px;
+    width: 250px;
+    font-size: 18px;
+  }
+  
+        
+
+     #History{
+          padding: 10% 15% ;
+          text-align: center;
+          background-color: #2c648ab6;
+      }
+
+      .property-image{
+          width:50%;
+          border-radius: 100%;
+      }
+
+      nav{
+          display:flex;
+          justify-content: space-around;
+          align-items: center;
+          min-height: 10vh;
+          background-color: rgb(73, 79, 82);
+          color:white;
+      }
+      .nav-links{
+          width:40%;
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          list-style: none;
+
+      }
+
+
+      .Find{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .Find input{
+          margin-top: 20px;
+          width: 300px;
+          height: 40px;
+          font-size: 20px;
+          padding-left: 10px;
+      }
+
+     
+/* information-section*/
+
+      .container-fluid {
+        padding: 7% 15%;
+      }
+      
+      #features {
+        padding: 7% 15%;
+        position: relative;
+        z-index: 1;
+      }
+     
+      
+      .feature-title {
+        font-size: 1.5rem;
+      }
+      
+.feature-box {
+    text-align: center;
+    padding: 5%;
+  }
+ 
+
+
+
+  /*footer-section*/
+
+.information-section{
+    background-color: rgb(160, 190, 189);
+}
+
+  .footer-paragraph {
+    font-size: 100%;
+    text-align: center;
+     }
+  
