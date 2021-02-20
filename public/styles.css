@@ -39,10 +39,7 @@ body{
           background-color: #2c648ab6;
       }
 
-      .property-image{
-          width:50%;
-          border-radius: 100%;
-      }
+      
 
       nav{
           display:flex;
@@ -134,29 +131,13 @@ body{
         float: left;
       }
       
-      #inputStreet {
-        width: 100%;
-      }
+          
       
-      #inputCity {
-        width: 50%;
-      }
+     
       
-      #inputState {
-        width: 15%;
-      }
+    
       
-      #inputZip {
-        width: 28%;
-      }
       
-      #inputCounty {
-        width: 45%;
-      }
-      
-      #inputCountry {
-        width: 50%;
-      }
       
     /* image upload section */
     img{

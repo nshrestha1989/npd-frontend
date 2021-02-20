@@ -6,6 +6,7 @@ import LocalMallIcon from '@material-ui/icons/LocalMall';
 
 function Information() {
     return (<section class="information-section" id="features">
+    <div><h1>Website Information</h1></div>
         <div class="container-fluid">
             <div class="row">
                 <div class="feature-box col-lg-4">
