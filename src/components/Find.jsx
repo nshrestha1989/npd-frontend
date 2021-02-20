@@ -1,13 +1,18 @@
 import React, { useState } from "react";
-import JSONDATA from "./MOCK_DATA.json";
-import { Link } from "react-router-dom";
+import JSONDATA from "../MOCK_DATA.json";
+import "../styles/search.css"
+import {Container} from "react-bootstrap";
 
 
 
 function Find() {
     const [searchTerm, setSearchTerm ]= useState("");
-    return (
-        <div className="Find">
+    return (<Container>
+        <div>
+         <div style={{ textAlign: "center" }}>
+            <h1  >Search Property to buy </h1>
+        </div>
+              <div className="Find">
             <input
                 type="text"
                 placeholder="Search..."
@@ -29,6 +34,8 @@ function Find() {
                 );
             })}
         </div>
+        </div>
+        </Container>
     );
 }
 

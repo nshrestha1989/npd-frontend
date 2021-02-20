@@ -1,16 +1,6 @@
 import React, { useState } from "react";
-import { Card, ListGroup } from 'react-bootstrap';
-import { Container } from 'react-bootstrap';
-
-import ImageIcon from '@material-ui/icons/Image';
-
-
-var customStyle = {
-    textAlign: "center",
-    paddingBottom: "10%"
-}
-
-
+import { Form, Button, Container, Row, Col } from "react-bootstrap";
+import "../styles/sell.css"
 
 function Sell() {
 
@@ -41,63 +31,65 @@ function Sell() {
 
 
     return (<div class="container-fluid">
-        <div style={customStyle}>
+        <div style={{ textAlign: "center" }}>
             <h1  >Post an Ad </h1>
         </div>
-        <div>
-            <form>
 
-                <div class="row mb-4">
-                    <div class="col">
-                        <div class="form-outline">
-                            <input type="text" id="form6Example1" class="form-control" />
-                            <label class="form-label" for="form6Example1">First name</label>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="form-outline">
-                            <input type="text" id="form6Example2" class="form-control" />
-                            <label class="form-label" for="form6Example2">Last name</label>
-                        </div>
-                    </div>
-                </div>
+        <Container>
+            <Form>
 
+                <Row>
+                    <Col md>
+                        <Form.Group controlId="formfName">
+                            <Form.Label>First Name</Form.Label>
+                            <Form.Control type="fName" placeholder="First Name" />
+                        </Form.Group>
+                    </Col>
+                    <Col md>
+                        <Form.Group controlId="formLName">
+                            <Form.Label>Last Name</Form.Label>
+                            <Form.Control type="LName" placeholder="Last Name" />
+                        </Form.Group>
+                    </Col>
 
-                <div class="form-outline mb-4">
-                    <input type="text" id="form6Example3" class="form-control" />
-                    <label class="form-label" for="form6Example3">Title</label>
-                </div>
+                </Row>
 
+                <Form.Group controlId="formEmail">
+                    <Form.Label>Email Address</Form.Label>
+                    <Form.Control type="Email" placeholder="Example@email.com" />
+                    <Form.Text style={{color:"#171716"}}>
+                        *Require email address for contact!!!
+        </Form.Text>
+                </Form.Group>
 
-                <div class="form-outline mb-4">
-                    <input type="text" id="form6Example4" class="form-control" />
-                    <label class="form-label" for="form6Example4">Property Address</label>
-                </div>
+                <Form.Group controlId="formTitle">
+                    <Form.Label>Property Title</Form.Label>
+                    <Form.Control type="Title" placeholder="Title" />
+                </Form.Group>
 
-
-                <div class="form-outline mb-4">
-                    <input type="email" id="form6Example5" class="form-control" />
-                    <label class="form-label" for="form6Example5">Email</label>
-                </div>
-
-
-                <div class="form-outline mb-4">
-                    <input type="number" id="form6Example6" class="form-control" />
-                    <label class="form-label" for="form6Example6">Phone</label>
-                </div>
+                <Form.Group controlId="formAddress">
+                    <Form.Label>Property Address</Form.Label>
+                    <Form.Control type="Address" placeholder="Address" />
+                </Form.Group>
 
 
-                <div class="form-outline mb-4">
-                    <textarea class="form-control" id="form6Example7" rows="4"></textarea>
-                    <label class="form-label" for="form6Example7">Description</label>
-                </div>
+                <Form.Group controlId="formPhone">
+                    <Form.Label>Phone</Form.Label>
+                    <Form.Control type="Phone" pattern="[0-9]*" placeholder="Phone" />
+                </Form.Group>
 
+                <Form.Group controlId="formPrice">
+                    <Form.Label>Price</Form.Label>
+                    <Form.Control type="Price" pattern="[0-9]*" placeholder="Price" />
+                </Form.Group>
 
+                <Form.Group controlId="formDescription">
+                    <Form.Label>Property Description</Form.Label>
+                    <Form.Control as="textarea" rows={4} placeholder="Description" />
+                </Form.Group>
+
+                {/* image section */}
                 <div className="image-section">
-
-
-                    {/* image upload section */}
-
                     <div>
                         <input type="file" id="file" multiple onChange={handleImageChange} />
 
@@ -106,35 +98,17 @@ function Sell() {
                             <label htmlFor="file" class="btn btn-primary btn-block mb-4 label">
                                 <i className="material-icons">add_a_photo</i>
                             </label>
-                           
+
                         </div>
                         <div className="result">{renderPhotos(selectedFiles)}</div>
                     </div>
                 </div>
-                
-                
-
-                <button type="submit" class="btn btn-primary btn-block mb-4">Submit</button>
-
-                <div class="
-                form-outline mb-4 form-check d-flex justify-content-center mb-4">
-                    <input
-                        class="form-check-input me-2"
-                        type="checkbox"
-                        value=""
-                        id="form6Example8"
-                    />
-                    <label class="form-check-label" for="form6Example8"> Create an account? </label>
-                </div>
-            </form>
-        </div>
-
-
+                <Button variant="secondary" type="submit">Submit</Button>
+            </Form>
+        </Container>
 
 
     </div>
-
-
     );
 
 
