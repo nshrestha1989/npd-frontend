@@ -30,9 +30,9 @@ function Sell() {
     };
 
 
-    return (<div class="container-fluid">
+    return (<div className="container-fluid">
         <div style={{ textAlign: "center" }}>
-            <h1  >Post an Ad </h1>
+            <h1 >Post an Ad </h1>
         </div>
 
         <Container>
