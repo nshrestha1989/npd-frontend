@@ -13,14 +13,14 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 function App() {
 
-
+  
 
 
   return (
     <Router>
       <Nav />
       <Route path="/" exact component={Home} />
-      <Route path="/sell" component={Sell} />
+      <Route path="/sell" component={Sell}  />
       <Route path="/find" component={Find} />
       <Route path="/" exact component={Information} />
 

@@ -2,99 +2,175 @@ import React, { useState } from "react";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import "../styles/sell.css";
 import axios from "axios";
+import create from "../services/PropertyService";
 
-function Sell(props) {
+const Sell=()=>{
+    const initialPropertyState={
+        id:null,
+        title:"",
+        address:"",
+        price:"",
+        picture:""
+    };
 
-    //property post request frontend
-    const [property, setProperty] = useState([]);
 
-    function addProperty(newProperty) {
+const [property,setProperty]=useState(initialPropertyState);
+const[submitted,setSubmitted] =useState(false);
 
-        axios.post("/npd/property", newProperty).then(response => {
-            setProperty(prevProperty => {
-                return [...prevProperty, newProperty]
-            });
+const handleInputChange=event=>{
+    const{name,value}=event.target;
+    setProperty({...property,[name]:value});
+};
+
+const saveProperty=()=>{
+    var data={
+        title:property.title,
+        address:property.address,
+        price:property.price,
+        picture:property.picture
+    };
+
+create(data).then(response =>{
+        setProperty({
+            id:response.data.id,
+            title:response.data.title,
+            address:response.data.address,
+            price:response.data.price,
+            picture:response.data.picture
         });
-
-    }
-
-    //crate form functions and state
-
-    const [land, setLand] = useState({
-        id: "",
-        address: "",
-        picture: "",
-        price: " ",
-        title: ""
-
+        setSubmitted(true);
+        console.log(response.data);
+    })
+    .catch(e=>{
+        console.log(e);
     });
+};
 
-    function handleChange(event) {
-        const { name, value } = event.target;
-
-        setLand((prevLand) => {
-            return {
-                ...prevLand,
-                [name]: value
-            };
-        });
-    }
-
-    function submitLand(event) {
-        props.onAdd(land);
-        setLand({
-            id: "",
-            address: "",
-            picture: "",
-            price: " ",
-            title: ""
-        });
-        event.preventDefault();
-    }
+const newProperty=() => {
+    setProperty(initialPropertyState);
+    setSubmitted(false);
+};
 
 
-    return (
+return (
+    <div className="submit-form">
+      {submitted ? (
         <div>
-            <form className="create-property">
-
-                <input
-                    name="title"
-                    onChange={handleChange}
-                    value={land.title}
-                    placeholder="Title"
-                />
-
-                <input
-                    name="address"
-                    onChange={handleChange}
-                    value={land.address}
-                    placeholder="address"
-                />
-
-                <input
-                    name="picture"
-                    onChange={handleChange}
-                    value={land.picture}
-                    placeholder="picture"
-                />
-
-                <input
-                    name="price"
-                    onChange={handleChange}
-                    value={land.price}
-                    placeholder="price"
-                />
-
-            </form>
-
-            <Button onClick={submitLand}>
-                submit
-              </Button>
-
-
+          <h4>You submitted successfully!</h4>
+          <button className="btn btn-success" onClick={newProperty}>
+            Add
+          </button>
         </div>
-    );
-}
+      ) : (
+        <div>
+          <div className="form-group">
+            <label htmlFor="title">Title</label>
+            <input
+              type="text"
+              className="form-control"
+              id="title"
+              required
+              value={property.title}
+              onChange={handleInputChange}
+              name="title"
+            />
+          </div>
+
+         
+          
+          <div className="form-group">
+            <label htmlFor="picture">picture</label>
+            <input
+              type="text"
+              className="form-control"
+              id="picture"
+              required
+              value={property.picture}
+              onChange={handleInputChange}
+              name="picture"
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="price">price</label>
+            <input
+              type="text"
+              className="form-control"
+              id="price"
+              required
+              value={property.price}
+              onChange={handleInputChange}
+              name="price"
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="address">address</label>
+            <input
+              type="text"
+              className="form-control"
+              id="address"
+              required
+              value={property.address}
+              onChange={handleInputChange}
+              name="address"
+            />
+          </div>
+
+          <button onClick={saveProperty} className="btn btn-success">
+            Submit
+          </button>
+        </div>
+      )}
+    </div>
+  );
+};
+
+
+
+
+
+    // return (
+    //     <div>
+    //         <form className="create-property">
+
+    //             <input
+    //                 name="title"
+    //                 onChange={handleChange}
+    //                 value={property.title}
+    //                 placeholder="Title"
+    //             />
+
+    //             <input
+    //                 name="address"
+    //                 onChange={handleChange}
+    //                 value={property.address}
+    //                 placeholder="address"
+    //             />
+
+    //             <input
+    //                 name="picture"
+    //                 onChange={handleChange}
+    //                 value={property.picture}
+    //                 placeholder="picture"
+    //             />
+
+    //             <input
+    //                 name="price"
+    //                 onChange={handleChange}
+    //                 value={property.price}
+    //                 placeholder="price"
+    //             />
+
+    //         </form>
+
+    //         <Button onClick={submitproperty}>
+    //             submit
+    //           </Button>
+
+
+    //     </div>
+    // );
+
 
 //     const [selectedFiles, setSelectedFiles] = useState([]);
 
