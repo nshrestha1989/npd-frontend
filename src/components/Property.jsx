@@ -24,14 +24,3 @@ function Property(props) {
 
 export default Property;
 
-//  <Card style={{ width: '18rem' }}>
-//   <Card.Body>
-//     <Card.Title>{props.title}</Card.Title>
-//     <Card.Subtitle className="mb-2 text-muted">{props.address}</Card.Subtitle>
-//     <Card.Subtitle className="mb-2 text-muted">{props.price}</Card.Subtitle>
-//     <Card.Text>
-//      {props.picture}
-//     </Card.Text>
-  
-//   </Card.Body>
-// </Card> 

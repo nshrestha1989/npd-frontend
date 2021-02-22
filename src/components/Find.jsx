@@ -5,15 +5,12 @@ import axios from "axios";
 import Property from "./Property";
 
 
-
-
-
 function Find() {
 
         const[property,setProperty]=useState([]);
 
         useEffect (() => {
-            axios.get("/api/property").then(response => {
+            axios.get("/npd/property").then(response => {
                 setProperty(existingProperty => {
                     return response.data;
             
@@ -22,8 +19,13 @@ function Find() {
                 });
               }, []);
       
+      
+
+           
+
 
     const [searchTerm, setSearchTerm ]= useState("");
+
     return (<Container>
         <div>
          <div style={{ textAlign: "center" }}>
