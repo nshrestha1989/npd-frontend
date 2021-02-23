@@ -3,6 +3,7 @@ import "../styles/search.css"
 import {Container} from "react-bootstrap";
 import axios from "axios";
 import Property from "./Property";
+import {getAllProperty} from "../services/PropertyService";
 
 
 function Find() {
@@ -10,18 +11,14 @@ function Find() {
         const[property,setProperty]=useState([]);
 
         useEffect (() => {
-            axios.get("/npd/property").then(response => {
+            getAllProperty().then(response => {
                 setProperty(existingProperty => {
                     return response.data;
             
                   });
             
                 });
-              }, []);
-      
-      
-
-           
+              }, []);        
 
 
     const [searchTerm, setSearchTerm ]= useState("");

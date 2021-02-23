@@ -1,12 +1,15 @@
 import http from "../http-common";
 
-const getAll = () => {
+const getAllProperty = () => {
   return http.get("/property");
 };
 
 
-const create = data => {
+const createProperty = data => {
   return http.post("/property", data);
 };
 
-export default create;
+export { 
+  getAllProperty,
+  createProperty
+}

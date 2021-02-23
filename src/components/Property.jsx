@@ -12,6 +12,7 @@ function Property(props) {
       <Card.Title>{props.title}</Card.Title>
       <Card.Subtitle className="mb-2 text-muted">{props.address}</Card.Subtitle>
       <Card.Subtitle className="mb-2 text-muted">{props.price}</Card.Subtitle>
+      <Card.Subtitle className="mb-2 text-muted">{props.price}</Card.Subtitle>
       <Card.Text sytle={{color:'red'}}>
        {props.picture}
       </Card.Text>

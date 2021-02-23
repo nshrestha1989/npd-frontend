@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Form, Button, Container, Row, Col } from "react-bootstrap";
+import {  Container} from "react-bootstrap";
 import "../styles/sell.css";
-import axios from "axios";
-import create from "../services/PropertyService";
+
+import {createProperty} from "../services/PropertyService";
+import Ownercreate from "../services/OwnerService";
 
 const Sell=()=>{
     const initialPropertyState={
@@ -30,7 +31,7 @@ const saveProperty=()=>{
         picture:property.picture
     };
 
-create(data).then(response =>{
+    createProperty(data).then(response =>{
         setProperty({
             id:response.data.id,
             title:response.data.title,
@@ -52,17 +53,93 @@ const newProperty=() => {
 };
 
 
+    // const [selectedFiles, setSelectedFiles] = useState([]);
+
+    // const handleImageChange = (e) => {
+    //     // console.log(e.target.files[])
+    //     if (e.target.files) {
+    //         const filesArray = Array.from(e.target.files).map((file) =>
+    //             URL.createObjectURL(file)
+    //         );
+
+    //         // console.log("filesArray: ", filesArray);
+
+    //         setSelectedFiles((prevImages) => prevImages.concat(filesArray));
+    //         Array.from(e.target.files).map(
+    //             (file) => URL.revokeObjectURL(file) // avoid memory leak
+    //         );
+    //     }
+    // };
+
+    // const renderPhotos = (source) => {
+    //     console.log("source: ", source);
+    //     return source.map((photo) => {
+    //         return <img src={photo} alt="" key={photo} />;
+    //     });
+    // };
+
+    const initialOwnerState={
+      id:null,
+      email:"",
+      firstName:"",
+      lastName:"",
+      phone:""
+  };
+
+
+const [owner,setOwner]=useState(initialOwnerState);
+
+
+// const handleInputChange=event=>{
+//   const{name,value}=event.target;
+//   setProperty({...property,[name]:value});
+// };
+
+const handleOwnerChange=event=>{
+  const{name,value}=event.target;
+  setOwner({...owner,[name]:value});
+};
+
+const saveOwner=()=>{
+  var data={
+      email:owner.email,
+      firstName:owner.firstName,
+      lastName:owner.lastName,
+      phone:owner.phone
+  };
+
+  Ownercreate(data).then(response =>{
+      setOwner({
+          id:response.data.id,
+          title:response.data.email,
+          address:response.data.firstName,
+          price:response.data.lastName,
+          picture:response.data.phone
+      });
+      setSubmitted(true);
+      console.log(response.data);
+  })
+  .catch(e=>{
+      console.log(e);
+  });
+};
+
+const newOwner=() => {
+  setOwner(initialOwnerState);
+  setSubmitted(false);
+
+}
 return (
-    <div className="submit-form">
+    <div className="submit-form ">
       {submitted ? (
         <div>
           <h4>You submitted successfully!</h4>
-          <button className="btn btn-success" onClick={newProperty}>
+          <button className="btn btn-success" onClick={()=>{newProperty();newOwner()}}>
             Add
           </button>
         </div>
       ) : (
-        <div>
+        <Container>
           <div className="form-group">
             <label htmlFor="title">Title</label>
             <input
@@ -94,9 +171,10 @@ return (
           <div className="form-group">
             <label htmlFor="price">price</label>
             <input
-              type="text"
+              type="phone"
               className="form-control"
               id="price"
+              pattern="[0-9]*"
               required
               value={property.price}
               onChange={handleInputChange}
@@ -116,86 +194,73 @@ return (
             />
           </div>
 
-          <button onClick={saveProperty} className="btn btn-success">
+          <div className="form-group">
+            <label htmlFor="firstName">First Name</label>
+            <input
+              type="text"
+              className="form-control"
+              id="firstName"
+              required
+              value={owner.firstName}
+              onChange={handleOwnerChange}
+              name="firstName"
+            />
+          </div>
+
+         
+          
+          <div className="form-group">
+            <label htmlFor="lastName">Last Name</label>
+            <input
+              type="text"
+              className="form-control"
+              id="lastName"
+              required
+              value={owner.lastName}
+              onChange={handleOwnerChange}
+              name="lastName"
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="email">Email</label>
+            <input
+              type="phone"
+              className="form-control"
+              id="email"
+                          required
+              value={owner.email}
+              onChange={handleOwnerChange}
+              name="email"
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="phone">Phone</label>
+            <input
+              type="text"
+              className="form-control"
+              id="phone"
+              required
+              value={owner.phone}
+              onChange={handleOwnerChange}
+              name="phone"
+            />
+          </div>
+     
+          <button onClick={()=>{saveOwner();saveProperty()}} className="btn btn-success">
             Submit
           </button>
-        </div>
+        </Container>
+        
       )}
+
+    
     </div>
   );
 };
 
 
 
-
-
-    // return (
-    //     <div>
-    //         <form className="create-property">
-
-    //             <input
-    //                 name="title"
-    //                 onChange={handleChange}
-    //                 value={property.title}
-    //                 placeholder="Title"
-    //             />
-
-    //             <input
-    //                 name="address"
-    //                 onChange={handleChange}
-    //                 value={property.address}
-    //                 placeholder="address"
-    //             />
-
-    //             <input
-    //                 name="picture"
-    //                 onChange={handleChange}
-    //                 value={property.picture}
-    //                 placeholder="picture"
-    //             />
-
-    //             <input
-    //                 name="price"
-    //                 onChange={handleChange}
-    //                 value={property.price}
-    //                 placeholder="price"
-    //             />
-
-    //         </form>
-
-    //         <Button onClick={submitproperty}>
-    //             submit
-    //           </Button>
-
-
-    //     </div>
-    // );
-
-
-//     const [selectedFiles, setSelectedFiles] = useState([]);
-
-//     const handleImageChange = (e) => {
-//         // console.log(e.target.files[])
-//         if (e.target.files) {
-//             const filesArray = Array.from(e.target.files).map((file) =>
-//                 URL.createObjectURL(file)
-//             );
-
-//             // console.log("filesArray: ", filesArray);
-
-//             setSelectedFiles((prevImages) => prevImages.concat(filesArray));
-//             Array.from(e.target.files).map(
-//                 (file) => URL.revokeObjectURL(file) // avoid memory leak
-//             );
-//         }
-//     };
-
-//     const renderPhotos = (source) => {
-//         console.log("source: ", source);
-//         return source.map((photo) => {
-//             return <img src={photo} alt="" key={photo} />;
-//         });
-//     };
 
 
 //     return (<div className="container-fluid">
