@@ -11,7 +11,15 @@ const Sell=()=>{
         title:"",
         address:"",
         price:"",
-        picture:""
+        picture:"",
+        // owner:{
+        //   id:"",
+        //   email:"",
+        //   fistName:"",
+        //   lastName:"",
+        //   phone:""
+        // }
+        
     };
 
 
@@ -28,16 +36,33 @@ const saveProperty=()=>{
         title:property.title,
         address:property.address,
         price:property.price,
-        picture:property.picture
+        picture:property.picture,
+        owner:{
+          id:owner.id,
+          email:owner.email,
+          firstName:owner.firstName,
+          lastName:owner.lastName,
+          phone:owner.phone
+        }
     };
 
     createProperty(data).then(response =>{
         setProperty({
             id:response.data.id,
-            title:response.data.title,
+            title:         
+            
+            
+            response.data.title,
             address:response.data.address,
             price:response.data.price,
-            picture:response.data.picture
+            picture:response.data.picture,
+            // owner:{
+            //   id:response.data.id,
+            //   email:response.data.email,
+            //   fistName:response.data.firstName,
+            //   lastName:response.data.lastName,
+            //   phone:response.data.phone
+            // }
         });
         setSubmitted(true);
         console.log(response.data);
@@ -90,39 +115,15 @@ const newProperty=() => {
 const [owner,setOwner]=useState(initialOwnerState);
 
 
-// const handleInputChange=event=>{
-//   const{name,value}=event.target;
-//   setProperty({...property,[name]:value});
-// };
 
 const handleOwnerChange=event=>{
   const{name,value}=event.target;
   setOwner({...owner,[name]:value});
 };
 
-const saveOwner=()=>{
-  var data={
-      email:owner.email,
-      firstName:owner.firstName,
-      lastName:owner.lastName,
-      phone:owner.phone
-  };
 
-  Ownercreate(data).then(response =>{
-      setOwner({
-          id:response.data.id,
-          title:response.data.email,
-          address:response.data.firstName,
-          price:response.data.lastName,
-          picture:response.data.phone
-      });
-      setSubmitted(true);
-      console.log(response.data);
-  })
-  .catch(e=>{
-      console.log(e);
-  });
-};
+
+  
 
 const newOwner=() => {
   setOwner(initialOwnerState);
@@ -247,7 +248,7 @@ return (
             />
           </div>
      
-          <button onClick={()=>{saveOwner();saveProperty()}} className="btn btn-success">
+          <button onClick={()=>{saveProperty()}} className="btn btn-success">
             Submit
           </button>
         </Container>
